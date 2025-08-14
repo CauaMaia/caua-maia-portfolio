@@ -18,6 +18,13 @@ Interfaces que unem **precisão estética** com **clareza funcional**.
 * **Tipografia**: Playfair Display & Inter.
 * **Paleta**: `#121212` (bg), `#EBEBEB` (text), `#8A38F5` (accent), `#B9B9B9` (muted).
 
+## 🔒 Privacidade & Acesso
+
+* **Repositório privado**: o código e os arquivos deste projeto são **confidenciais**. Não compartilhe telas, snippets ou artefatos fora do time sem autorização.
+* **Conceder acesso**: *Settings → Collaborators and teams → Add people* (defina o papel: *Read*, *Triage*, *Write* ou *Maintain*). Para organizações, prefira adicionar via **Teams**.
+* **Forks/Downloads**: em repositórios privados, forks públicos não são permitidos. Evite exportar arquivos fora do Git sem necessidade.
+* **Issues/PRs**: use títulos claros e marque com labels internas (ex.: `design`, `frontend`, `bug`, `enhancement`).
+
 ---
 
 ## 🧱 Stack
@@ -174,6 +181,13 @@ No arquivo `src/sections/MyWork/index.tsx`, adicione um item ao array `works`:
 * Botões e links com `:focus-visible`.
 * Ícones com `aria-label` nos botões sociais.
 * Respeito a `prefers-reduced-motion` nas animações/partículas.
+
+---
+## 📄 Licença & Uso
+
+Este projeto é **proprietário (All Rights Reserved)** e destinado apenas a colaboradores com permissão explícita. É proibida a redistribuição, publicação pública ou uso comercial sem autorização do autor.
+
+> Quer abrir o código no futuro? Troque esta seção por uma licença OSS (ex.: MIT) e remova/ajuste os avisos de confidencialidade.
 
 ---
 
