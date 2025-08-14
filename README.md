@@ -1,46 +1,182 @@
-# Getting Started with Create React App
+# Cauã Maia — Portfólio (React + TypeScript)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Interfaces que unem **precisão estética** com **clareza funcional**.
 
-## Available Scripts
+> Projeto do portfólio pessoal com animações sutis, carrossel de trabalhos, wireframe animado e suporte a **EN/PT**.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* **Hero** com headline, brush underline e CTAs.
+* **My Work** com **Carousel** (setas, dots, snap) e **WorkCard** com efeito **tilt 3D**.
+* **About** com **WireframeMedia**: wireframe de baixa fidelidade montando via animação.
+* **Differentials** com cards interativos (**DiffCard**) e tilt 3D.
+* **Footer** com CTA e navegação (componente **FooterLink**).
+* **Particles** (canvas) em todo o site, interativas (repulsão/burst) — exceto sob o footer.
+* **i18n** simples (**EN/PT**) nas seções Hero, MyWork, About, Differentials e Footer.
+* **Tipografia**: Playfair Display & Inter.
+* **Paleta**: `#121212` (bg), `#EBEBEB` (text), `#8A38F5` (accent), `#B9B9B9` (muted).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧱 Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **React** + **TypeScript** (CRA ou Vite, conforme setup).
+* CSS modular por componente (**`styles.css`** dentro da pasta do componente/ seção).
+* Ícones **inline SVG** e `react-icons` onde necessário.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Estrutura
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+  components/
+    Button/
+      index.tsx
+      styles.css
+    SocialLinks/
+      index.tsx
+      styles.css
+    Tag/
+      index.tsx
+      styles.css
+    WorkCard/
+      index.tsx
+      styles.css
+    DiffCard/
+      index.tsx
+      styles.css
+    Carousel/
+      index.tsx
+      styles.css
+    WireframeMedia/
+      index.tsx
+      styles.css
+    FooterLink/
+      index.tsx
+      styles.css
+    Particles/
+      index.tsx
+      styles.css
+  sections/
+    Hero/
+      index.tsx
+      styles.css
+    MyWork/
+      index.tsx
+      styles.css
+    About/
+      index.tsx
+      styles.css
+    Differentials/
+      index.tsx
+      styles.css
+    Footer/
+      index.tsx
+      styles.css
+  App.tsx
+  App.css
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> **Convenção:** use sempre **`styles.css`** (e não `style.css`).
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🚀 Scripts
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+# desenvolvimento
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# build de produção
+npm run build
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# análise de dependências (opcional)
+npm audit
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎨 Design System
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **Fonts**: importadas no `public/index.html` via Google Fonts.
+* **Cores (CSS vars)**:
+
+  ```css
+  :root{
+    --bg:#121212; --text:#EBEBEB; --muted:#B9B9B9;
+    --accent:#8A38F5; --accent-08: rgba(138,56,245,.08); --accent-18: rgba(138,56,245,.18);
+  }
+  ```
+* **Botões**: `primary` (accent) e `secondary` (outline claro) já prontos.
+
+---
+
+## 🧩 Componentes principais
+
+* **Button** — CTA com variantes `primary|secondary`.
+* **SocialLinks** — ícones de X/LinkedIn/Instagram/GitHub.
+* **Tag** — etiqueta usada nos cards de trabalho.
+* **WorkCard** — imagem + título + tags com **tilt 3D**.
+* **Carousel** — navegação horizontal com setas e dots.
+* **DiffCard** — card com tilt e glow que segue o mouse.
+* **WireframeMedia** — wireframe animado (desktop/mobile), timeline coreografada.
+* **FooterLink** — link individual do footer.
+* **Particles** — fundo com partículas interativas (repulsão e burst).
+
+---
+
+## 🌐 Internacionalização (EN/PT)
+
+Passe a prop `locale` nas seções:
+
+```tsx
+<Hero locale={locale} />
+<MyWork locale={locale} />
+<About locale={locale} />
+<Differentials locale={locale} />
+<Footer locale={locale} />
+```
+
+Para alternar em runtime, um toggle simples no `App.tsx` atualiza o estado `locale`.
+
+---
+
+## ➕ Adicionando um novo trabalho
+
+No arquivo `src/sections/MyWork/index.tsx`, adicione um item ao array `works`:
+
+```ts
+{
+  title: "Nova Case",
+  subtitle: "Aplicativo XYZ",
+  href: "https://seulink.com",
+  tags: [{ label: "Design", variant: "yellow" }, { label: "Code", variant: "yellow" }],
+  // imageSrc: "/img/preview.png" (opcional)
+}
+```
+
+---
+
+## 🛠️ Dicas de Dev
+
+* Mantenha imports relativos ou absolutos (se `baseUrl` = `src` estiver configurado).
+* Evite imagens pesadas; use `object-fit: cover` nos previews.
+* Efeitos 3D/tilt podem ser suavizados ajustando **MAX\_TILT** (WorkCard/DiffCard).
+
+---
+
+## ♿ Acessibilidade
+
+* Contraste alto (texto claro em fundo escuro).
+* Botões e links com `:focus-visible`.
+* Ícones com `aria-label` nos botões sociais.
+* Respeito a `prefers-reduced-motion` nas animações/partículas.
+
+---
+
+### Autor
+
+**Cauã Maia** — UI Designer
