@@ -7,12 +7,14 @@ import MyWork from "./sections/MyWork";
 import About from "./sections/About";
 import Differentials from "./sections/Diferencials";
 import Footer from "./sections/Footer";
+import LanguageToggle from "components/LanguageToggle";
 
 function App() {
   const [locale, setLocale] = useState<"en" | "pt">("en");
 
   return (
     <>
+       <LanguageToggle value={locale} onChange={setLocale} floating />
       <Particles /> 
 
       <div className="site-content">

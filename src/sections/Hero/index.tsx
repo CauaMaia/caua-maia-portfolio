@@ -45,9 +45,9 @@ const Hero: React.FC<HeroProps> = ({
   locale = "en",
   name = "Cauã Maia",
   socials = [
-    { type: "x", href: "https://x.com/yourprofile" },
-    { type: "linkedin", href: "https://linkedin.com/in/yourprofile" },
-    { type: "instagram", href: "https://instagram.com/yourprofile" },
+    { type: "linkedin", href: "https://www.linkedin.com/in/cau%C3%A3-maia/", label: "LinkedIn" },
+    { type: "github",   href: "https://github.com/CauaMaia",       label: "GitHub" },
+    { type: "figma",    href: "https://www.figma.com/@cauamaiadesouza",     label: "Figma"  },
   ],
   onClickWork,
   onClickAbout,

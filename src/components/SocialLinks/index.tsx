@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles.css";
-import { FaTwitter, FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
-import type { IconType } from "react-icons";
+import { FaLinkedinIn, FaGithub, FaFigma } from "react-icons/fa";
+import { SiFigma } from "react-icons/si";
 
-type SocialType = "x" | "linkedin" | "instagram" | "github";
+type SocialType = "linkedin" | "github" | "figma";
 
 export interface SocialItem {
   type: SocialType;
@@ -18,17 +18,18 @@ interface SocialLinksProps {
   className?: string;
 }
 
-const ICONS: Record<SocialType, IconType> = {
-  x: FaTwitter,
-  linkedin: FaLinkedinIn,
-  instagram: FaInstagram,
-  github: FaGithub,
-};
+const SIZE_PX = { sm: 16, md: 20, lg: 24 } as const;
 
-const Icon = ({ type }: { type: SocialType }): React.ReactElement => {
-  const Comp = ICONS[type] as unknown as React.ComponentType; 
-  return <Comp />;
-};
+function getIcon(type: SocialType): any {
+  switch (type) {
+    case "linkedin":
+      return FaLinkedinIn as any;
+    case "github":
+      return FaGithub as any;
+    case "figma":
+      return (FaFigma as any) ?? (SiFigma as any);
+  }
+}
 
 export const SocialLinks: React.FC<SocialLinksProps> = ({
   items,
@@ -36,21 +37,30 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
   variant = "yellow",
   className = "",
 }) => {
+  const px = SIZE_PX[size];
+
   return (
     <div className={`socials ${className}`}>
-      {items.map(({ type, href, label }, i) => (
-        <a
-          key={`${type}-${i}`}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`social-btn ${variant} ${size}`}
-          aria-label={label ?? type}
-          title={label ?? type}
-        >
-          <Icon type={type} />
-        </a>
-      ))}
+      {items.map(({ type, href, label }, i) => {
+        const Icon = getIcon(type);
+        return (
+          <a
+            key={`${type}-${i}`}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`social-btn ${variant} ${size}`}
+            aria-label={label ?? type}
+            title={label ?? type}
+          >
+            {React.createElement(Icon as any, {
+              size: px,
+              "aria-hidden": true,
+              focusable: "false",
+            })}
+          </a>
+        );
+      })}
     </div>
   );
 };
