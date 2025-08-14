@@ -1,0 +1,19 @@
+:root{ --bg:#121212; --text:#EBEBEB; --muted:#B9B9B9; --accent:#A74FFF; }
+
+.mywork{
+  background: var(--bg);
+  color: var(--text);
+}
+
+.mywork__wrap{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+}
+
+.mywork__title{
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+  margin: 0 0 1rem;
+}

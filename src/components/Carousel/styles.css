@@ -1,0 +1,100 @@
+:root{
+  --bg:#121212;
+  --text:#EBEBEB;
+  --muted:#B9B9B9;
+  --accent:#8A38F5;
+  --accent-08: rgba(138,56,245,.08);
+  --accent-18: rgba(138,56,245,.18);
+}
+
+.carousel{
+  position: relative;
+  overflow: visible;
+  --gap: 1rem;
+  --slide-w: 340px;
+}
+
+.car-viewport{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--slide-w);
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0 52px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.car-viewport::-webkit-scrollbar{ display: none; }
+
+.car-track{ display: contents; }
+.car-slide{ scroll-snap-align: start; }
+
+.car-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  pointer-events: auto;
+  width: 42px; height: 42px;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  border: 2px solid var(--accent);
+  background: rgba(0,0,0,.55);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  transition: background-color .2s ease, box-shadow .2s ease, border-color .2s ease, transform .15s ease;
+}
+.car-btn--prev{ left: 6px; }
+.car-btn--next{ right: 6px; }
+.car-btn:hover{
+  background: var(--accent-08);
+  box-shadow: 0 10px 26px var(--accent-18), 0 8px 16px rgba(0,0,0,.35);
+  transform: translateY(-50%) scale(1.04);
+}
+.car-btn:active{
+  transform: translateY(-50%) scale(.98);
+}
+.car-btn:disabled{
+  opacity:.45; cursor:not-allowed;
+  filter: grayscale(.3);
+}
+.car-btn svg{ width: 22px; height: 22px; pointer-events: none; }
+
+.car-dots{
+  display: flex; gap: 8px; justify-content: center; align-items: center;
+  padding: 12px 0 0;
+}
+.car-dot{
+  width: 8px; height: 8px; border-radius: 999px;
+  background: rgba(255,255,255,.25);
+  border: none; padding: 0;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.car-dot.is-active{
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+@media (max-width: 1024px){
+  .carousel{ --slide-w: 320px; }
+}
+@media (max-width: 768px){
+  .carousel{ --slide-w: 84vw; }
+  .car-viewport{ padding: 0 44px; }
+  .car-btn{ width: 38px; height: 38px; }
+  .car-btn svg{ width: 20px; height: 20px; }
+}
+@media (max-width: 460px){
+  .carousel{ --slide-w: 88vw; }
+  .car-viewport{ padding: 0 40px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .car-viewport{ scroll-behavior: auto; }
+  .car-btn{ transition: none; }
+  .car-dot{ transition: none; }
+}

@@ -1,0 +1,22 @@
+.tag {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  line-height: 1;
+  user-select: none;
+}
+
+
+.tag--yellow {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.tag--dark {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+}

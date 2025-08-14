@@ -1,0 +1,163 @@
+:root{
+  --bg:#121212; --text:#EBEBEB; --muted:#B9B9B9; --accent:#A74FFF;
+  --glass: rgba(255,255,255,.06);
+  --glass-border: rgba(255,255,255,.14);
+  --lofi:#d9d9d9;
+  --ink:#2b2b2b;
+}
+
+.about{ background: var(--bg); color: var(--text); }
+.about__wrap{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem 3.5rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 980px){
+  .about__wrap{
+    grid-template-columns: minmax(0, 560px) minmax(0, 560px);
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+.about__media{
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (min-width: 980px){
+  .about__media{
+    margin-left: auto;
+  }
+}
+
+.about__title{
+  font-family:"Playfair Display", serif;
+  font-weight:700;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  margin: 0 0 1rem;
+}
+.about__p{
+  font: 400 1.05rem/1.8 "Inter", system-ui, sans-serif;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.wf{ position: relative; }
+.wf-desk, .wf-mobile{ position: relative; }
+.wf-mobile{ display:none; }
+@media (max-width: 767px){
+  .wf-desk{ display:none; }
+  .wf-mobile{ display:block; }
+}
+
+.wf-frame{
+  position:absolute; inset:0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+}
+.wf-frame.m{ border-radius: 12px; }
+
+.wf-top{
+  position: absolute; left: 24px; right: 24px; top: 20px; height: 44px;
+  display: grid; grid-template-columns: 120px 1fr 120px; align-items:center;
+}
+.wf-top .wf-chip-left{
+  width: 108px; height: 24px; border-radius: 12px; background: var(--ink);
+}
+.wf-top .wf-chip-right{
+  justify-self: end;
+  width: 108px; height: 24px; border-radius: 12px; background: var(--ink);
+}
+.wf-dash{
+  justify-self: center;
+  width: 56px; height: 4px; background: var(--lofi); opacity: .55; border-radius: 2px;
+  position: relative;
+}
+.wf-dash + .wf-dash{ margin-left: 18px; }
+
+.wf-body{
+  position: relative; margin: 92px 28px 28px; padding: 28px;
+  background: var(--lofi); border-radius: 22px; display:grid;
+  grid-template-columns: 1.2fr .9fr; gap: 24px;
+}
+.wf-lines{ align-self: start; }
+.wf-line{
+  height: 10px; background: #bfbfbf; border-radius: 6px; margin: 10px 0;
+}
+.wf-line.xl{ width: 78%; height: 14px; }
+.wf-line.lg{ width: 72%; }
+.wf-line.md{ width: 64%; }
+.wf-line.sm{ width: 46%; }
+
+.wf-cta{
+  width: 34%; height: 36px; border-radius: 999px; background: #bfbfbf; margin-top: 12px;
+}
+.wf-rect{
+  background: var(--ink); border-radius: 12px; min-height: 180px;
+}
+
+.wf-top.m{
+  position: absolute; left: 16px; right: 16px; top: 14px; height: 40px;
+  display:flex; align-items:center; justify-content: space-between;
+}
+.wf-chip-left.m{ width: 92px; height: 22px; border-radius: 11px; background: var(--ink); }
+.wf-hamb{ width: 26px; height: 16px; position: relative; }
+.wf-hamb::before, .wf-hamb::after, .wf-hamb span{
+  content:""; position:absolute; left:0; right:0; height:2px; background: var(--lofi);
+}
+.wf-hamb::before{ top:0; } .wf-hamb::after{ bottom:0; }
+.wf-hamb span{ top:50%; transform: translateY(-50%); display:block; }
+
+.wf-body.m{
+  position: relative; margin: 76px 16px 16px; padding: 18px;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 14px;
+}
+.wf-body.m .wf-line{ background: #cfcfcf; }
+.wf-rect.m{ height: 180px; border-radius: 10px; background: var(--ink); margin-top: 14px; }
+
+.wf-desk{ height: 360px; }
+.wf-mobile{ height: 420px; }
+@media (min-width:1100px){ .wf-desk{ height: 420px; } }
+
+.anm{
+  opacity: 0; transform: translateY(8px) scale(.98);
+}
+.wf.is-visible .anm{
+  animation: wfIn .42s ease forwards;
+}
+.wf.is-visible .stagger-1 { animation-delay: .00s; }
+.wf.is-visible .stagger-2 { animation-delay: .06s; }
+.wf.is-visible .stagger-3 { animation-delay: .12s; }
+.wf.is-visible .stagger-4 { animation-delay: .18s; }
+.wf.is-visible .stagger-5 { animation-delay: .24s; }
+.wf.is-visible .stagger-6 { animation-delay: .30s; }
+.wf.is-visible .stagger-7 { animation-delay: .36s; }
+.wf.is-visible .stagger-8 { animation-delay: .42s; }
+.wf.is-visible .stagger-9 { animation-delay: .48s; }
+.wf.is-visible .stagger-10{ animation-delay: .54s; }
+.wf.is-visible .stagger-11{ animation-delay: .60s; }
+.wf.is-visible .stagger-12{ animation-delay: .66s; }
+.wf.is-visible .stagger-13{ animation-delay: .72s; }
+
+@keyframes wfIn{
+  from{ opacity:0; transform: translateY(8px) scale(.98); }
+  to  { opacity:1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .anm, .wf.is-visible .anm{ animation: none !important; opacity: 1; transform: none; }
+}
+
+.about__media{ justify-self: center; }
+@media (min-width:980px){
+  .about__media{ justify-self: end; }
+}

@@ -1,0 +1,21 @@
+:root{
+  --bg:#121212; --text:#EBEBEB; --muted:#B9B9B9;
+}
+
+.diff-sec{ background: var(--bg); color: var(--text); }
+.diff-sec__wrap{ max-width:1120px; margin:0 auto; padding:3.5rem 1.25rem; }
+
+.diff-sec__title{
+  font-family:"Playfair Display", serif;
+  font-weight:700;
+  font-size: clamp(2rem, 3.5vw + 1rem, 3rem);
+  line-height: 1.1;
+  margin:0 0 1.5rem;
+}
+
+.diff-sec__grid{
+  display:grid; gap:1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width:680px){ .diff-sec__grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (min-width:1024px){ .diff-sec__grid{ grid-template-columns: repeat(3, 1fr); } }

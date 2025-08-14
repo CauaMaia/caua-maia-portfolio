@@ -1,0 +1,174 @@
+:root{
+  --glass: rgba(255,255,255,.06);
+  --glass-border: rgba(255,255,255,.14);
+  --lofi:#d9d9d9;
+  --ink:#2b2b2b;
+}
+
+/* ---------- Base & layout ---------- */
+.wfm{
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0;
+  box-sizing: border-box;
+  isolation: isolate;
+
+  /* controles de espaçamento */
+  --wf-gutter: 22px;   /* margem interna L/R */
+  --wf-gap: 20px;      /* gap entre colunas do corpo */
+  --wf-top: 18px;      /* offset superior */
+}
+@media (min-width:1100px){ .wfm{ max-width: 640px; } }
+@media (max-width:767px){
+  .wfm{ --wf-gutter: 14px; --wf-gap: 16px; --wf-top: 14px; }
+}
+
+.wfm-desk, .wfm-mobile{
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  z-index: 0;
+}
+.wfm-desk{ height: 380px; }
+@media (min-width:1100px){ .wfm-desk{ height: 420px; } }
+.wfm-mobile{ height: 420px; }
+
+/* container interno: aplica o mesmo gutter no topo e corpo */
+.wfm-inner{
+  position: absolute;
+  inset: 0;
+  padding: var(--wf-top) var(--wf-gutter) var(--wf-gutter);
+  display: grid;
+  grid-template-rows: 42px 1fr;  /* topo + conteúdo */
+  align-content: start;
+  gap: var(--wf-gap);
+}
+.wfm-inner.m{ grid-template-rows: 40px 1fr; }
+
+/* qual versão mostrar */
+.wfm--auto .wfm-desk{ display:block; }
+.wfm--auto .wfm-mobile{ display:none; }
+@media (max-width: 767px){
+  .wfm--auto .wfm-desk{ display:none; }
+  .wfm--auto .wfm-mobile{ display:block; }
+}
+.wfm--desktop .wfm-mobile{ display:none; }
+.wfm--mobile .wfm-desk{ display:none; }
+
+/* ---------- Camadas ---------- */
+.wfm-frame{
+  position:absolute; inset:0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+  z-index: 1; /* atrás */
+}
+.wfm-top, .wfm-body{
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---------- Topo ---------- */
+.wfm-top{
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
+  align-items: center;
+}
+.wfm-chip-left, .wfm-chip-right{
+  width:108px; height:22px; border-radius:12px; background: var(--ink);
+}
+.wfm-dashes{
+  display:flex; justify-content:center; gap:14px;
+}
+.wfm-dash{
+  width:52px; height:4px; background:#e0e0e0; opacity:.55; border-radius: 2px;
+}
+
+/* ---------- Corpo ---------- */
+.wfm-body{
+  background: var(--lofi);
+  border-radius: 22px;
+  padding: 22px;
+  display:grid;
+  grid-template-columns: 1.2fr .9fr;
+  gap: var(--wf-gap);
+}
+.wfm-lines{ align-self: start; }
+.wfm-line{ height:10px; background:#bfbfbf; border-radius: 6px; margin: 10px 0; }
+.wfm-line.xl{ width:78%; height:14px; }
+.wfm-line.lg{ width:72%; }
+.wfm-line.md{ width:64%; }
+.wfm-line.sm{ width:46%; }
+.wfm-cta{ width:34%; height:34px; border-radius:999px; background:#bfbfbf; margin-top:10px; }
+.wfm-rect{ background: var(--ink); border-radius: 12px; min-height: 170px; }
+
+/* ---------- Mobile ---------- */
+.wfm-top.m{
+  display:flex; align-items:center; justify-content: space-between;
+}
+.wfm-chip-left.m{ width:92px; height:22px; border-radius: 11px; background: var(--ink); }
+.wfm-hamb{ width:26px; height:16px; position:relative; }
+.wfm-hamb::before, .wfm-hamb::after, .wfm-hamb span{
+  content:""; position:absolute; left:0; right:0; height:2px; background:#e0e0e0;
+}
+.wfm-hamb::before{ top:0; } .wfm-hamb::after{ bottom:0; } .wfm-hamb span{ top:50%; transform: translateY(-50%); display:block; }
+
+.wfm-body.m{
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.wfm-body.m .wfm-line{ background:#cfcfcf; }
+.wfm-rect.m{ height: 170px; border-radius: 10px; background: var(--ink); margin-top: 12px; }
+
+/* ---------- Animação (curta e suave) ---------- */
+.anm{
+  opacity: 0;
+  transform: translateY(4px);
+  will-change: transform, opacity;
+  transform-origin: top left;
+}
+.wfm.is-visible .anm{ animation: wfmIn .28s ease-out forwards; }
+
+.anm-row{ opacity:0; transform: translateY(4px); }
+.wfm.is-visible .anm-row{ animation: wfmRowIn .24s ease-out forwards; }
+
+.fade{ opacity:0; }
+.wfm.is-visible .fade{ animation: fadeIn .20s ease-out forwards; }
+
+/* stagger curto */
+.wfm.is-visible .s1{  animation-delay: .00s; }
+.wfm.is-visible .s2{  animation-delay: .04s; }
+.wfm.is-visible .s3{  animation-delay: .08s; }
+.wfm.is-visible .s4{  animation-delay: .12s; }
+.wfm.is-visible .s5{  animation-delay: .16s; }
+.wfm.is-visible .s6{  animation-delay: .20s; }
+.wfm.is-visible .s7{  animation-delay: .24s; }
+.wfm.is-visible .s8{  animation-delay: .28s; }
+.wfm.is-visible .s9{  animation-delay: .32s; }
+.wfm.is-visible .s10{ animation-delay: .36s; }
+.wfm.is-visible .s11{ animation-delay: .40s; }
+.wfm.is-visible .s12{ animation-delay: .44s; }
+.wfm.is-visible .s13{ animation-delay: .48s; }
+.wfm.is-visible .s14{ animation-delay: .52s; }
+
+@keyframes wfmIn{
+  from{ opacity:0; transform: translateY(4px); }
+  to  { opacity:1; transform: translateY(0); }
+}
+@keyframes wfmRowIn{
+  from{ opacity:0; transform: translateY(4px); }
+  to  { opacity:1; transform: translateY(0); }
+}
+@keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+@media (prefers-reduced-motion: reduce){
+  .anm, .anm-row, .fade,
+  .wfm.is-visible .anm, .wfm.is-visible .anm-row, .wfm.is-visible .fade{
+    animation: none !important; opacity:1; transform: none;
+  }
+}

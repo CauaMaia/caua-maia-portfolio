@@ -1,0 +1,61 @@
+:root{
+  --bg:#121212; --text:#EBEBEB; --muted:#B9B9B9;
+  --accent:#8A38F5; --accent-08: rgba(138,56,245,.08); --accent-18: rgba(138,56,245,.18);
+  --glass: rgba(255,255,255,.06);
+}
+
+.diff-card{ perspective: 900px; outline: none; }
+
+.diff-card__inner{
+  position: relative;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  padding: 1.25rem;
+  min-height: 180px;
+
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform .16s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+  will-change: transform;
+
+  background-image:
+    radial-gradient(220px 220px at var(--lx,50%) var(--ly,50%), var(--accent-08), transparent 60%);
+  box-shadow: 0 10px var(--sh, 0px) rgba(0,0,0,.35);
+}
+
+.diff-card:hover .diff-card__inner,
+.diff-card:focus-visible .diff-card__inner{
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px var(--accent-18), 0 12px 24px rgba(0,0,0,.35);
+}
+
+.diff-card__icon{
+  color: var(--accent);
+  margin-bottom: .5rem;
+  transform: translateZ(30px);
+}
+.diff-card__icon svg{ width:28px; height:28px; display:block; }
+
+.diff-card__title{
+  font-family:"Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin: .1rem 0 .35rem;
+  letter-spacing: .2px;
+  transform: translateZ(24px);
+}
+
+.diff-card__desc{
+  font: 400 .95rem/1.6 "Inter", system-ui, sans-serif;
+  color: var(--muted);
+  margin: 0;
+  transform: translateZ(18px);
+}
+
+@media (hover:none), (pointer:coarse){
+  .diff-card__inner{ transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce){
+  .diff-card__inner{ transition: none; }
+}
